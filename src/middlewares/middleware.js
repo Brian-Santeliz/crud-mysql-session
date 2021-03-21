@@ -1,5 +1,7 @@
-import { database } from "../config/connection";
-
+import { MiddlewareHelper } from "../helpers/middleware";
+import { AdminHelper } from "../helpers/admin";
+const { getAdmin } = new MiddlewareHelper();
+const { verificarPassword } = new AdminHelper();
 export class Middleware {
   async verificarAdmin(req, res, next) {
     const usuario = req.headers["usuario"];
@@ -8,14 +10,15 @@ export class Middleware {
       return res.status(400).json("Ingresa el usuario y password");
     }
     try {
-      const SQL = "SELECT * from admin WHERE usuario = ?";
-      const response = await database.awaitQuery(SQL, [usuario]);
+      const response = await getAdmin(usuario);
       if (!response.length) {
         return res.status(404).json("Usuario no encontrado");
       }
-      //comprar password si todo esta bine dejarlo pasar, caso contrario mandar un error
-      console.log(response[0].password);
-      next();
+      const [{ password: passwordEncryptada }] = response;
+      const result = await verificarPassword(password, passwordEncryptada);
+      return result
+        ? next()
+        : res.status(401).json("La password no es correcta");
     } catch (error) {
       res.status(403).json({ msg: "Error autenticando", error });
     }

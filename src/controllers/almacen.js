@@ -7,7 +7,7 @@ export class AlmacenController {
       const data = !query.length ? "Almacen vacio" : query;
       res.status(200).json(data);
     } catch (error) {
-      console.log("Error obteniendo la data", error);
+      res.json({ msg: "Error obteniendo la data", error });
     }
   }
   async getRouterId(req, res) {
@@ -17,7 +17,7 @@ export class AlmacenController {
       const data = !query.length ? "Producto no encontrado" : query;
       res.status(200).json(data);
     } catch (error) {
-      console.log("Error obteniendo la data", error);
+      res.json({ msg: "Error obteniendo la data", error });
     }
   }
   async postRouter(req, res) {
@@ -29,7 +29,7 @@ export class AlmacenController {
         : "No se pudo registrar el producto";
       res.status("200").json(data);
     } catch (error) {
-      console.log("Error insertando la data", error);
+      res.json({ msg: "Error insertando la data", error });
     }
   }
   async putRouter(req, res) {
@@ -42,7 +42,7 @@ export class AlmacenController {
         : "El producto no fue actualizado";
       res.status(201).json(data);
     } catch (error) {
-      console.log("Error actualizando la data", error);
+      res.json({ msg: "Error actualizando la data", error });
     }
   }
   async deleteRouter(req, res) {
@@ -54,7 +54,7 @@ export class AlmacenController {
         : "El producto no fue eliminado";
       res.status(200).json(data);
     } catch (error) {
-      console.log("Error eliminando la data", error);
+      res.json({ msg: "Error eliminando la data", error });
     }
   }
 }

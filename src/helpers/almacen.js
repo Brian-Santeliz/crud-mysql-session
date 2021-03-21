@@ -5,7 +5,7 @@ export class AlmacenHelpers {
     try {
       return database.awaitQuery(SQL);
     } catch (error) {
-      console.log("Ocurrio un error en la query", error);
+      console.log("Ocurrio un error en la consulta", error);
     }
   }
   async getId(id) {
@@ -13,7 +13,7 @@ export class AlmacenHelpers {
     try {
       return database.awaitQuery(SQL, [id]);
     } catch (error) {
-      console.log("Ocurrio un error en la query", error);
+      console.log("Ocurrio un error en la consulta", error);
     }
   }
   async post(nombre, nombre_marca, especificaciones) {
@@ -26,7 +26,7 @@ export class AlmacenHelpers {
         especificaciones,
       ]);
     } catch (error) {
-      console.log("Ocurrio un error en la query", error);
+      console.log("Ocurrio un error en la consulta", error);
     }
   }
   async put(nombre, nombre_marca, especificaciones, id) {
@@ -40,7 +40,7 @@ export class AlmacenHelpers {
         id,
       ]);
     } catch (error) {
-      console.log("Ocurrio un error en la query", error);
+      console.log("Ocurrio un error en la consulta", error);
     }
   }
   async delete(id) {
@@ -48,7 +48,7 @@ export class AlmacenHelpers {
     try {
       return await database.awaitQuery(SQL, [id]);
     } catch (error) {
-      console.log("Ocurrio un error en la query", error);
+      console.log("Ocurrio un error en la consulta", error);
     }
   }
 }

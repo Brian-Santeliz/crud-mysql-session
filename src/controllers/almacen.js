@@ -42,7 +42,7 @@ export class AlmacenController {
         : "El producto no fue actualizado";
       res.status(201).json(data);
     } catch (error) {
-      console.log("Error insertando la data", error);
+      console.log("Error actualizando la data", error);
     }
   }
   async deleteRouter(req, res) {
@@ -54,7 +54,7 @@ export class AlmacenController {
         : "El producto no fue eliminado";
       res.status(200).json(data);
     } catch (error) {
-      console.log("Error obteniendo la data", error);
+      console.log("Error eliminando la data", error);
     }
   }
 }

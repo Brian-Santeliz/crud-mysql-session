@@ -1,5 +1,4 @@
 import { database } from "../config/connection";
-
 export class MiddlewareHelper {
   async getAdmin(usuario) {
     const SQL = "SELECT * from admin WHERE usuario = ?";
